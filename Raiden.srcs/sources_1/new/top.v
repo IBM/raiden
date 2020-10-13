@@ -24,7 +24,8 @@ module top(
   input rst,
   input ftdi_rx,
   input trigger_in,
-  input gpio_1,
+  input gpio_in,
+  output gpio_out,
   output ftdi_tx,
   output led0_g,
   output led0_r,
@@ -88,9 +89,11 @@ cmd cmd_inst
   .vstart(vstart),
   .invert_trigger(invert_trigger),
   .reset_target(reset_target),
-  .gpio_1(gpio_1)
+  .gpio_in(gpio_in),
+  .gpio_out(gpio_out)
   );   
   assign ftdi_tx =  bit_out;
+  assign gpio_out = gpio_out;
  
  // reset target feature
 // assign rst_out = reset_target ? 1'b0 : 1'b1;
