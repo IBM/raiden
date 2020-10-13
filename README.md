@@ -71,4 +71,5 @@ Generated file should be under Raiden.runs/impl_1/top.bin - e.g. 'builds/xxx.bin
 ##### 6.3 Uses cases
 
 Docs folder include application for voltage glitching
+
 For EMFI like (ChipShouter) invert glitch IO38 should be used as pulse out signal.
