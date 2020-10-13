@@ -68,7 +68,7 @@
 
 Generated file should be under Raiden.runs/impl_1/top.bin - e.g. 'builds/xxx.bin'
 
-##### 6.3 Uses cases
+### 7) Use cases
 
 Docs folder include application for voltage glitching
 
