@@ -27,7 +27,8 @@ module cmd(
   input finished,
   input glitched,
   input glitch_out,
-  input gpio_in,
+  input gpio_in1,
+  input gpio_in2,
   output reg gpio_out,
   output wire dout,
   output reg [1:0] force_state = 2'd2,
@@ -62,13 +63,14 @@ parameter CMD_GPIO_OUT = 8'd80;
 
 parameter IDLE = 5'b00000;
 parameter ACK_4BYTE_CMD = 5'b00001;
-parameter GLITCH_DELAY_LENGTH = 5'b00100;
 parameter GLITCH_WIDTH = 5'b00011;
+parameter GLITCH_DELAY_LENGTH = 5'b00100;
 parameter GLITCH_COUNT = 5'b01000;
 parameter ARM = 5'b01001;
 parameter GLITCH_GAP = 5'b01100;
 parameter FORCE_GLITCH_OUT_STATE = 5'b01110;
 parameter RST_GLITCHER = 5'b10000;
+parameter GPIO_OUT = 5'b10001;
 parameter RST = 5'b10010;
 parameter VSTART = 5'b10100;
 parameter GLITCH_MAX = 5'b10110;
@@ -76,7 +78,6 @@ parameter BUILDTIME = 5'b11000;
 parameter FLAG_STATUS = 5'b11010;
 parameter INVERT = 5'b11100;
 parameter RESET_TARGET = 5'b11110;
-parameter GPIO_OUT = 5'b10001;
   
 reg [4:0] state = IDLE;
 wire bit_out;
@@ -94,15 +95,16 @@ uart_rx rxi (
 reg  tx_en = 1'b0;
 reg [7:0] tx_data;
 wire tx_rdy;
-wire [7:0] flags; 
+wire [8:0] flags; 
   
 assign flags[0]= armed;       // API armed
 assign flags[1]= glitched;    // glitching has started
 assign flags[2]= finished;    // glitching has completed
 assign flags[3]= glitch_out;  // current state of glitch out
 assign flags[4]= trigger_in;  // current state of trigger in
-assign flags[5] = gpio_in; // GPIO_IN status
+assign flags[5] = gpio_in1; // GPIO_IN1 status
 assign flags[6] = gpio_out; // GPIO_OUT status
+assign flags[7] = gpio_in2; // GPIO_IN2 status
   
 uart_tx txi (
   .clk(clk),
