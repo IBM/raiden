@@ -22,6 +22,8 @@
 module top(
   input clk,
   input rst,
+  input emmc_clk,
+  input emmc_dat0,
   input ftdi_rx,
   input trigger_in,
   input gpio_in1,
@@ -52,12 +54,15 @@ parameter AUTO = 2'd2;
 wire bit_out;
 wire active;
 
+wire emmc_trigger;
+
 wire [31:0] glitch_delay;
 wire [31:0] glitch_width;
 wire [31:0] glitch_count;
 wire [31:0] glitch_gap;
 wire [31:0] glitch_max;
 wire [31:0] reset_target;
+wire [31:0] emmc_user_data;
 wire armed;
 wire glitched;
 wire finished;
@@ -68,6 +73,14 @@ wire reset_glitcher;
 
 // counter for main loop
 reg [31:0] counter;
+
+emmc emmc_inst (
+  .rst(rst || reset_glitcher),
+  .emmc_clk(emmc_clk),
+  .emmc_dat0(emmc_dat0),
+  .emmc_user_data(emmc_user_data),
+  .emmc_trigger(emmc_trigger)
+);
 
 cmd cmd_inst
 (
@@ -81,6 +94,7 @@ cmd cmd_inst
   .glitch_count(glitch_count),
   .glitch_gap(glitch_gap),
   .glitch_max(glitch_max),
+  .emmc_user_data(emmc_user_data),
   .armed(armed),
   .finished(finished),
   .glitched(glitched),
@@ -101,7 +115,7 @@ cmd cmd_inst
 // assign rst_out = reset_target ? 1'b0 : 1'b1;
 wire glitch;
 wire trigger;
-assign trigger = invert_trigger ^ trigger_in;
+assign trigger = invert_trigger ^ trigger_in ^ emmc_trigger;
 assign glitch_out = force_state != AUTO ? force_state : glitch;
 assign invert_glitch_out = !glitch_out;
 wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (glitch_max && glitched && !finished)));

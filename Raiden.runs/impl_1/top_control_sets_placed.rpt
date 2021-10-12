@@ -1,0 +1,106 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
+| Date         : Tue Oct 12 00:17:26 2021
+| Host         : Luxoft running 64-bit Ubuntu 20.04.1 LTS
+| Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
+| Design       : top
+| Device       : xc7a35ti
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    28 |
+|    Minimum number of control sets                        |    28 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    40 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    28 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     7 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    14 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              70 |           27 |
+| No           | No                    | Yes                    |               1 |            1 |
+| No           | Yes                   | No                     |              58 |           14 |
+| Yes          | No                    | No                     |             304 |           86 |
+| Yes          | No                    | Yes                    |              64 |           21 |
+| Yes          | Yes                   | No                     |              79 |           28 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++---------------------+------------------------------------------+------------------------------------------+------------------+----------------+
+|     Clock Signal    |               Enable Signal              |             Set/Reset Signal             | Slice Load Count | Bel Load Count |
++---------------------+------------------------------------------+------------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG      | cmd_inst/txi/dout_i_1_n_0                |                                          |                1 |              1 |
+|  emmc_clk_IBUF_BUFG |                                          | cmd_inst/reset_glitcher_reg_1            |                1 |              1 |
+|  clk_IBUF_BUFG      | cmd_inst/rxi/valid_reg_0[0]              | rst_IBUF                                 |                1 |              4 |
+|  clk_IBUF_BUFG      | cmd_inst/txi/E[0]                        | cmd_inst/FSM_sequential_state[4]_i_1_n_0 |                3 |              5 |
+|  clk_IBUF_BUFG      | cmd_inst/rxi/rst                         |                                          |                3 |              6 |
+|  clk_IBUF_BUFG      | cmd_inst/rxi/rst                         | cmd_inst/rxi/etu_cnt[5]_i_1__0_n_0       |                2 |              6 |
+|  clk_IBUF_BUFG      |                                          | pwm_led2_r/counter[7]_i_1__2_n_0         |                1 |              8 |
+|  clk_IBUF_BUFG      | cmd_inst/rxi/reset_glitcher_reg_3[0]     |                                          |                3 |              8 |
+|  clk_IBUF_BUFG      |                                          | pwm_led0_g/SR[0]                         |                2 |              8 |
+|  clk_IBUF_BUFG      |                                          | pwm_led2_b/counter[7]_i_1__4_n_0         |                2 |              8 |
+|  clk_IBUF_BUFG      |                                          | pwm_led0_b/counter[7]_i_1__1_n_0         |                2 |              8 |
+|  clk_IBUF_BUFG      |                                          | pwm_led2_g/counter[7]_i_1__3_n_0         |                3 |              8 |
+|  clk_IBUF_BUFG      |                                          | pwm_led0_r/counter[7]_i_1_n_0            |                2 |              8 |
+|  clk_IBUF_BUFG      |                                          | cmd_inst/txi/etu_cnt[9]_i_1__0_n_0       |                2 |             10 |
+|  emmc_clk_IBUF_BUFG | emmc_inst/capture0                       | cmd_inst/reset_glitcher_reg_1            |               13 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/u32_rec/E[0]                    |                                          |               11 |             32 |
+|  emmc_clk_IBUF_BUFG | emmc_inst/counter[0]_i_1__5_n_0          | cmd_inst/reset_glitcher_reg_1            |                8 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/rxi/E[0]                        |                                          |                9 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/reset_glitcher_reg_3            | glitchi/cycles[31]_i_1_n_0               |                9 |             32 |
+|  clk_IBUF_BUFG      | glitchi/width_cnt[31]_i_1_n_0            |                                          |                5 |             32 |
+|  clk_IBUF_BUFG      | glitchi/reset_cnt[31]_i_2_n_0            | cmd_inst/reset_glitcher_reg_4            |               13 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/state_reg[2]_0                  |                                          |                4 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/u32_rec/reset_glitcher_reg_3[0] |                                          |                9 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/u32_rec/reset_glitcher_reg_1[0] |                                          |                9 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/u32_rec/reset_glitcher_reg[0]   |                                          |               10 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/u32_rec/reset_glitcher_reg_0[0] |                                          |               11 |             32 |
+|  clk_IBUF_BUFG      | cmd_inst/u32_rec/reset_glitcher_reg_2[0] |                                          |               11 |             33 |
+|  clk_IBUF_BUFG      |                                          |                                          |               27 |             70 |
++---------------------+------------------------------------------+------------------------------------------+------------------+----------------+
+
+

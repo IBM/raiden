@@ -41,8 +41,10 @@ module cmd(
   output reg reset_glitcher,
   output reg vstart,
   output reg invert_trigger,
-  output reg [31:0] reset_target
+  output reg [31:0] reset_target,
+  output reg [31:0] emmc_user_data
   );
+  
 reg fpga_rst;
 parameter AUTO = 2'd2;
 parameter CMD_RST_GLITCHER = 8'd65;
@@ -60,6 +62,7 @@ parameter CMD_BUILDTIME = 8'd77;
 parameter CMD_INVERT = 8'd78;
 parameter CMD_RESET_TARGET = 8'd79;
 parameter CMD_GPIO_OUT = 8'd80;
+parameter CMD_EMMC_DATA = 8'd81;
 
 parameter IDLE = 5'b00000;
 parameter ACK_4BYTE_CMD = 5'b00001;
@@ -78,6 +81,7 @@ parameter BUILDTIME = 5'b11000;
 parameter FLAG_STATUS = 5'b11010;
 parameter INVERT = 5'b11100;
 parameter RESET_TARGET = 5'b11110;
+parameter EMMC_DATA = 5'b11111;
   
 reg [4:0] state = IDLE;
 wire bit_out;
@@ -148,6 +152,7 @@ always @(posedge clk)
     glitch_width <= glitch_width;
     glitch_max <= glitch_max;
     glitch_gap <= glitch_gap;
+    emmc_user_data <= emmc_user_data;
     state <= state;
     if(state == BUILDTIME || state == ACK_4BYTE_CMD)
       begin
@@ -220,6 +225,13 @@ always @(posedge clk)
                     tx_en <= 1'b1;
                     u32_rec_enable <= 1'b1;
                     state <= GLITCH_MAX;
+                  end
+                CMD_EMMC_DATA:
+                  begin
+                    tx_data <= rx_data;
+                    tx_en <= 1'b1;
+                    u32_rec_enable <= 1'b1;
+                    state <= EMMC_DATA;
                   end
                 CMD_RESET_TARGET:
                   begin
@@ -356,6 +368,15 @@ always @(posedge clk)
           if(u32_rec_valid)
             begin
               glitch_max <= u32_rec_data;
+              state <= ACK_4BYTE_CMD;
+              count <= count -1;
+            end
+        end
+      EMMC_DATA:
+        begin
+          if(u32_rec_valid)
+            begin
+              emmc_user_data <= u32_rec_data;
               state <= ACK_4BYTE_CMD;
               count <= count -1;
             end
