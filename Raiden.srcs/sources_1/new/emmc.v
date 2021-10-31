@@ -34,7 +34,7 @@ module emmc(
  always @(posedge emmc_clk or negedge rst) begin
      capture <= capture;
      counter <= counter;
-     emmc_trigger <= emmc_trigger;
+     emmc_trigger <= 1'b0;
      if (!rst) begin
          emmc_trigger <= 1'b0;
          counter <= 24'b1000000000;

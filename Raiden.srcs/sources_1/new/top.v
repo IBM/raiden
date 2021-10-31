@@ -73,12 +73,12 @@ wire reset_glitcher;
 // counter for main loop
 reg [31:0] counter;
 
-wire emmc_trigger = 1'b0;
+wire emmc_trigger;
 assign emmc_trigger_out = emmc_trigger || 1'b0;
 
 emmc emmc_inst (
   .rst(rst || reset_glitcher),
-  .emmc_clk(emmc_clk),
+  .emmc_clk(emmc_clk || clk),
   .emmc_dat0(emmc_dat0),
   .emmc_user_data(emmc_user_data),
   .emmc_trigger(emmc_trigger)
