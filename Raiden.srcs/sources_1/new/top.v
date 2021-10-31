@@ -43,7 +43,8 @@ module top(
   output led_glitch_out,
   output wire glitch_out,
   output invert_glitch_out,
-  output wire reset_out
+  output wire reset_out,
+  output emmc_trigger_out
     );
  
 //  assign target_tx = ftdi_rx;
@@ -53,8 +54,6 @@ parameter AUTO = 2'd2;
 
 wire bit_out;
 wire active;
-
-wire emmc_trigger;
 
 wire [31:0] glitch_delay;
 wire [31:0] glitch_width;
@@ -73,6 +72,9 @@ wire reset_glitcher;
 
 // counter for main loop
 reg [31:0] counter;
+
+wire emmc_trigger = 1'b0;
+assign emmc_trigger_out = emmc_trigger || 1'b0;
 
 emmc emmc_inst (
   .rst(rst || reset_glitcher),
@@ -115,7 +117,7 @@ cmd cmd_inst
 // assign rst_out = reset_target ? 1'b0 : 1'b1;
 wire glitch;
 wire trigger;
-assign trigger = invert_trigger ^ trigger_in ^ emmc_trigger;
+assign trigger = invert_trigger ^ trigger_in ^ emmc_trigger_out;
 assign glitch_out = force_state != AUTO ? force_state : glitch;
 assign invert_glitch_out = !glitch_out;
 wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (glitch_max && glitched && !finished)));
