@@ -36,6 +36,7 @@ module top(
   output led2_g,
   output led2_r,
   output led2_b,
+  output led3_b,
   output led_blink,
   output led5_debug,
   output led6_debug,
@@ -43,8 +44,7 @@ module top(
   output led_glitch_out,
   output wire glitch_out,
   output invert_glitch_out,
-  output wire reset_out,
-  output emmc_trigger_out
+  output wire reset_out
     );
  
 //  assign target_tx = ftdi_rx;
@@ -74,7 +74,6 @@ wire reset_glitcher;
 reg [31:0] counter;
 
 wire emmc_trigger;
-assign emmc_trigger_out = emmc_trigger || 1'b0;
 
 emmc emmc_inst (
   .rst(rst || reset_glitcher),
@@ -117,7 +116,7 @@ cmd cmd_inst
 // assign rst_out = reset_target ? 1'b0 : 1'b1;
 wire glitch;
 wire trigger;
-assign trigger = invert_trigger ^ trigger_in ^ emmc_trigger_out;
+assign trigger = invert_trigger ^ trigger_in ^ emmc_trigger;
 assign glitch_out = force_state != AUTO ? force_state : glitch;
 assign invert_glitch_out = !glitch_out;
 wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (glitch_max && glitched && !finished)));
@@ -207,6 +206,16 @@ wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (gl
     .duty(48),
     .signal(trigger_in),
     .state(led2_b)
+   );
+   
+      // LD3 - emmc trigger 
+          
+                  
+   pwm pwm_led3_b (
+    .clk(clk),
+    .duty(48),
+    .signal(emmc_trigger),
+    .state(led3_b)
    );
 
   //assign debug_enable = (armed && trigger_in) || (armed && !trigger_in_pullup);
