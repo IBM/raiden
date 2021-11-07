@@ -23,7 +23,7 @@ set_property -dict { PACKAGE_PIN G4    IOSTANDARD LVCMOS33 } [get_ports { led1_b
 set_property -dict { PACKAGE_PIN H4    IOSTANDARD LVCMOS33 } [get_ports { led2_b }]; #IO_L21N_T3_DQS_35 Sch=led2_b
 set_property -dict { PACKAGE_PIN J2    IOSTANDARD LVCMOS33 } [get_ports { led2_g }]; #IO_L22N_T3_35 Sch=led2_g
 set_property -dict { PACKAGE_PIN J3    IOSTANDARD LVCMOS33 } [get_ports { led2_r }]; #IO_L22P_T3_35 Sch=led2_r
-#set_property -dict { PACKAGE_PIN K2    IOSTANDARD LVCMOS33 } [get_ports { led3_b }]; #IO_L23P_T3_35 Sch=led3_b
+set_property -dict { PACKAGE_PIN K2    IOSTANDARD LVCMOS33 } [get_ports { led3_b }]; #IO_L23P_T3_35 Sch=led3_b
 #set_property -dict { PACKAGE_PIN H6    IOSTANDARD LVCMOS33 } [get_ports { led3_g }]; #IO_L24P_T3_35 Sch=led3_g
 #set_property -dict { PACKAGE_PIN K1    IOSTANDARD LVCMOS33 } [get_ports { led3_r }]; #IO_L23N_T3_35 Sch=led3_r
 
@@ -108,9 +108,13 @@ set_property -dict { PACKAGE_PIN R10   IOSTANDARD LVCMOS33 } [get_ports { trigge
 set_property PULLDOWN TRUE [get_ports trigger_in]
 set_property -dict { PACKAGE_PIN R11   IOSTANDARD LVCMOS33 } [get_ports { debug_io0_14_p30 }]; #IO_0_14  		 			Sch=ck_io[30]
 #set_property -dict { PACKAGE_PIN R13   IOSTANDARD LVCMOS33 } [get_ports { debug }]; #IO_L5N_T0_D07_14 			Sch=ck_io[31]
-#set_property -dict { PACKAGE_PIN R15   IOSTANDARD LVCMOS33 } [get_ports { ck_io32 }]; #IO_L13N_T2_MRCC_14 			Sch=ck_io[32]
-#set_property -dict { PACKAGE_PIN P15   IOSTANDARD LVCMOS33 } [get_ports { rst_out }]; #IO_L13P_T2_MRCC_14 			Sch=ck_io[33]
-#set_property -dict { PACKAGE_PIN R16   IOSTANDARD LVCMOS33 } [get_ports { clk_gen }]; #IO_L15P_T2_DQS_RDWR_B_14 	Sch=ck_io[34]
+set_property -dict { PACKAGE_PIN R15   IOSTANDARD LVCMOS33 } [get_ports { emmc_clk }]; #IO_L13N_T2_MRCC_14 			Sch=ck_io[32]
+set_property PULLDOWN TRUE [get_ports emmc_clk]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets {emmc_clk_IBUF}]
+
+set_property -dict { PACKAGE_PIN P15   IOSTANDARD LVCMOS33 } [get_ports { emmc_dat0 }]; #IO_L13P_T2_MRCC_14 			Sch=ck_io[33]
+set_property PULLDOWN TRUE [get_ports emmc_dat0]
+#set_property -dict { PACKAGE_PIN R16   IOSTANDARD LVCMOS33 } [get_ports { emmc_trigger_out }]; #IO_L15P_T2_DQS_RDWR_B_14 	Sch=ck_io[34]
 set_property -dict { PACKAGE_PIN N16   IOSTANDARD LVCMOS33 } [get_ports { gpio_in2 }]; #IO_L11N_T1_SRCC_14 			Sch=ck_io[35]
 set_property PULLDOWN TRUE [get_ports gpio_in2]
 set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { gpio_in1 }]; #IO_L8P_T1_D11_14 			Sch=ck_io[36]

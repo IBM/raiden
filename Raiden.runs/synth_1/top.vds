@@ -1,0 +1,584 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Oct 12 00:16:21 2021
+# Process ID: 354440
+# Current directory: /home/luxoft/raiden/Raiden.runs/synth_1
+# Command line: vivado -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: /home/luxoft/raiden/Raiden.runs/synth_1/top.vds
+# Journal file: /home/luxoft/raiden/Raiden.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace
+Command: synth_design -top top -part xc7a35ticsg324-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Device 21-403] Loading part xc7a35ticsg324-1L
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 354465 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1734.152 ; gain = 153.688 ; free physical = 5575 ; free virtual = 25739
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/top.v:22]
+	Parameter AUTO bound to: 2'b10 
+INFO: [Synth 8-6157] synthesizing module 'emmc' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/emmc.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'emmc' (1#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/emmc.v:23]
+INFO: [Synth 8-6157] synthesizing module 'cmd' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/cmd.v:22]
+	Parameter AUTO bound to: 2'b10 
+	Parameter CMD_RST_GLITCHER bound to: 8'b01000001 
+	Parameter CMD_FORCE_GLITCH_OUT_STATE bound to: 8'b01000010 
+	Parameter CMD_FLAG_STATUS bound to: 8'b01000100 
+	Parameter CMD_GLITCH_DELAY bound to: 8'b01000101 
+	Parameter CMD_GLITCH_WIDTH bound to: 8'b01000110 
+	Parameter CMD_GLITCH_COUNT bound to: 8'b01000111 
+	Parameter CMD_ARM bound to: 8'b01001000 
+	Parameter CMD_GLITCH_GAP bound to: 8'b01001001 
+	Parameter CMD_RST bound to: 8'b01001010 
+	Parameter CMD_VSTART bound to: 8'b01001011 
+	Parameter CMD_GLITCH_MAX bound to: 8'b01001100 
+	Parameter CMD_BUILDTIME bound to: 8'b01001101 
+	Parameter CMD_INVERT bound to: 8'b01001110 
+	Parameter CMD_RESET_TARGET bound to: 8'b01001111 
+	Parameter CMD_GPIO_OUT bound to: 8'b01010000 
+	Parameter IDLE bound to: 5'b00000 
+	Parameter ACK_4BYTE_CMD bound to: 5'b00001 
+	Parameter GLITCH_WIDTH bound to: 5'b00011 
+	Parameter GLITCH_DELAY_LENGTH bound to: 5'b00100 
+	Parameter GLITCH_COUNT bound to: 5'b01000 
+	Parameter ARM bound to: 5'b01001 
+	Parameter GLITCH_GAP bound to: 5'b01100 
+	Parameter FORCE_GLITCH_OUT_STATE bound to: 5'b01110 
+	Parameter RST_GLITCHER bound to: 5'b10000 
+	Parameter GPIO_OUT bound to: 5'b10001 
+	Parameter RST bound to: 5'b10010 
+	Parameter VSTART bound to: 5'b10100 
+	Parameter GLITCH_MAX bound to: 5'b10110 
+	Parameter BUILDTIME bound to: 5'b11000 
+	Parameter FLAG_STATUS bound to: 5'b11010 
+	Parameter INVERT bound to: 5'b11100 
+	Parameter RESET_TARGET bound to: 5'b11110 
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uart_rx.v:28]
+	Parameter START_BIT bound to: 3'b000 
+	Parameter RX_BITS bound to: 3'b001 
+	Parameter STOP_BIT bound to: 3'b010 
+INFO: [Synth 8-251] UART RX: Invalid state 0xx [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uart_rx.v:104]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (2#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uart_rx.v:28]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uart_tx.v:27]
+	Parameter UART_START bound to: 3'b000 
+	Parameter UART_DATA bound to: 3'b001 
+	Parameter UART_STOP bound to: 3'b010 
+	Parameter UART_IDLE bound to: 3'b011 
+INFO: [Synth 8-251] UART TX: Invalid state 0xx [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uart_tx.v:109]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (3#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uart_tx.v:27]
+INFO: [Synth 8-6157] synthesizing module 'uint32_receiver' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uint32_receiver.v:20]
+	Parameter STATE_IDLE bound to: 4'b0000 
+	Parameter STATE_RECEIVING bound to: 4'b0001 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uint32_receiver.v:56]
+INFO: [Synth 8-6155] done synthesizing module 'uint32_receiver' (4#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/uint32_receiver.v:20]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxoft/raiden/Raiden.srcs/sources_1/new/cmd.v:165]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/luxoft/raiden/Raiden.srcs/sources_1/new/cmd.v:160]
+INFO: [Synth 8-6157] synthesizing module 'USR_ACCESSE2' [/home/luxoft/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:81345]
+INFO: [Synth 8-6155] done synthesizing module 'USR_ACCESSE2' (5#1) [/home/luxoft/Xilinx/Vivado/2019.1/scripts/rt/data/unisim_comp.v:81345]
+WARNING: [Synth 8-6014] Unused sequential element fpga_rst_reg was removed.  [/home/luxoft/raiden/Raiden.srcs/sources_1/new/cmd.v:291]
+INFO: [Synth 8-6155] done synthesizing module 'cmd' (6#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/cmd.v:22]
+INFO: [Synth 8-6157] synthesizing module 'glitch' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/glitch.v:24]
+	Parameter DELAY bound to: 3'b000 
+	Parameter GLITCH bound to: 3'b001 
+	Parameter GAP bound to: 3'b010 
+INFO: [Synth 8-6155] done synthesizing module 'glitch' (7#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/glitch.v:24]
+INFO: [Synth 8-6157] synthesizing module 'pwm' [/home/luxoft/raiden/Raiden.srcs/sources_1/new/pwm.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'pwm' (8#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/pwm.v:23]
+WARNING: [Synth 8-3848] Net emmc_user_data in module/entity top does not have driver. [/home/luxoft/raiden/Raiden.srcs/sources_1/new/top.v:65]
+INFO: [Synth 8-6155] done synthesizing module 'top' (9#1) [/home/luxoft/raiden/Raiden.srcs/sources_1/new/top.v:22]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[31]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[30]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[29]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[28]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[27]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[26]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[25]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[24]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[23]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[22]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[21]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[20]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[19]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[18]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[17]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[16]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[15]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[14]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[13]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[12]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[11]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[10]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[9]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[8]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[7]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[6]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[5]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[4]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[3]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[2]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[1]
+WARNING: [Synth 8-3331] design emmc has unconnected port emmc_user_data[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1786.902 ; gain = 206.438 ; free physical = 5612 ; free virtual = 25776
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1792.840 ; gain = 212.375 ; free physical = 5611 ; free virtual = 25776
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1792.840 ; gain = 212.375 ; free physical = 5611 ; free virtual = 25776
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/luxoft/raiden/Raiden.srcs/constrs_1/imports/digilent-xdc-master/Arty-A7-35-Master.xdc]
+WARNING: [Vivado 12-507] No nets matched 'emmc_clk_IBUF'. [/home/luxoft/raiden/Raiden.srcs/constrs_1/imports/digilent-xdc-master/Arty-A7-35-Master.xdc:112]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/luxoft/raiden/Raiden.srcs/constrs_1/imports/digilent-xdc-master/Arty-A7-35-Master.xdc:112]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/luxoft/raiden/Raiden.srcs/constrs_1/imports/digilent-xdc-master/Arty-A7-35-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/luxoft/raiden/Raiden.srcs/constrs_1/imports/digilent-xdc-master/Arty-A7-35-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1970.465 ; gain = 0.000 ; free physical = 5516 ; free virtual = 25681
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1970.465 ; gain = 0.000 ; free physical = 5516 ; free virtual = 25681
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5600 ; free virtual = 25765
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35ticsg324-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5600 ; free virtual = 25765
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5600 ; free virtual = 25765
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uint32_receiver'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cmd'
+INFO: [Synth 8-5546] ROM "state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "u32_rec_enable" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tx_data" won't be mapped to RAM because it is too sparse
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               START_BIT |                               00 |                              000
+                 RX_BITS |                               01 |                              001
+                STOP_BIT |                               10 |                              010
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'uart_rx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              UART_START |                               00 |                              000
+               UART_DATA |                               01 |                              001
+               UART_STOP |                               10 |                              010
+               UART_IDLE |                               11 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'uart_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+              STATE_IDLE |                                0 |                             0000
+         STATE_RECEIVING |                                1 |                             0001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'uint32_receiver'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                            00000 |                            00000
+  FORCE_GLITCH_OUT_STATE |                            00001 |                            01110
+            RST_GLITCHER |                            00010 |                            10000
+                     RST |                            00011 |                            10010
+             FLAG_STATUS |                            00100 |                            11010
+     GLITCH_DELAY_LENGTH |                            00101 |                            00100
+            GLITCH_WIDTH |                            00110 |                            00011
+            GLITCH_COUNT |                            00111 |                            01000
+              GLITCH_GAP |                            01000 |                            01100
+              GLITCH_MAX |                            01001 |                            10110
+            RESET_TARGET |                            01010 |                            11110
+           ACK_4BYTE_CMD |                            01011 |                            00001
+                     ARM |                            01100 |                            01001
+                  VSTART |                            01101 |                            10100
+                  INVERT |                            01110 |                            11100
+                GPIO_OUT |                            01111 |                            10001
+               BUILDTIME |                            10000 |                            11000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'cmd'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5591 ; free virtual = 25756
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 7     
+	   2 Input     10 Bit       Adders := 2     
+	   2 Input      8 Bit       Adders := 6     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 4     
++---XORs : 
+	   3 Input      1 Bit         XORs := 1     
++---Registers : 
+	               32 Bit    Registers := 12    
+	               10 Bit    Registers := 2     
+	                8 Bit    Registers := 8     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 4     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 20    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 18    
+	   4 Input     32 Bit        Muxes := 4     
+	   2 Input     10 Bit        Muxes := 3     
+	   3 Input     10 Bit        Muxes := 1     
+	   4 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 2     
+	  16 Input      8 Bit        Muxes := 1     
+	  17 Input      8 Bit        Muxes := 1     
+	  17 Input      5 Bit        Muxes := 1     
+	  16 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 9     
+	  17 Input      3 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 3     
+	   4 Input      2 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 44    
+	   4 Input      1 Bit        Muxes := 13    
+	  16 Input      1 Bit        Muxes := 4     
+	  17 Input      1 Bit        Muxes := 17    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module top 
+Detailed RTL Component Info : 
++---XORs : 
+	   3 Input      1 Bit         XORs := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module emmc 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module uart_rx 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 2     
+	   3 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 3     
+Module uart_tx 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	               10 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     10 Bit        Muxes := 1     
+	   4 Input     10 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 6     
+Module uint32_receiver 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module cmd 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 6     
+	                8 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 7     
++---Muxes : 
+	  16 Input      8 Bit        Muxes := 1     
+	  17 Input      8 Bit        Muxes := 1     
+	  17 Input      5 Bit        Muxes := 1     
+	  16 Input      5 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	  17 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+	  16 Input      1 Bit        Muxes := 4     
+	  17 Input      1 Bit        Muxes := 17    
+Module glitch 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 7     
++---Registers : 
+	               32 Bit    Registers := 4     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 17    
+	   4 Input     32 Bit        Muxes := 4     
+	   2 Input      3 Bit        Muxes := 6     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 26    
+	   4 Input      1 Bit        Muxes := 7     
+Module pwm 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5566 ; free virtual = 25735
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5452 ; free virtual = 25620
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1970.465 ; gain = 390.000 ; free physical = 5404 ; free virtual = 25573
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5405 ; free virtual = 25574
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------------+------+
+|      |Cell         |Count |
++------+-------------+------+
+|1     |BUFG         |     2|
+|2     |CARRY4       |    93|
+|3     |LUT1         |   104|
+|4     |LUT2         |    69|
+|5     |LUT3         |    76|
+|6     |LUT4         |   120|
+|7     |LUT5         |   178|
+|8     |LUT6         |   168|
+|9     |USR_ACCESSE2 |     1|
+|10    |FDCE         |    64|
+|11    |FDPE         |     1|
+|12    |FDRE         |   510|
+|13    |IBUF         |     8|
+|14    |OBUF         |    16|
++------+-------------+------+
+
+Report Instance Areas: 
++------+-------------+----------------+------+
+|      |Instance     |Module          |Cells |
++------+-------------+----------------+------+
+|1     |top          |                |  1410|
+|2     |  cmd_inst   |cmd             |   678|
+|3     |    rxi      |uart_rx         |   109|
+|4     |    txi      |uart_tx         |    47|
+|5     |    u32_rec  |uint32_receiver |    69|
+|6     |  emmc_inst  |emmc            |   158|
+|7     |  glitchi    |glitch          |   388|
+|8     |  pwm_led0_b |pwm             |    21|
+|9     |  pwm_led0_g |pwm_0           |    20|
+|10    |  pwm_led0_r |pwm_1           |    21|
+|11    |  pwm_led2_b |pwm_2           |    21|
+|12    |  pwm_led2_g |pwm_3           |    21|
+|13    |  pwm_led2_r |pwm_4           |    21|
++------+-------------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.113 ; gain = 390.648 ; free physical = 5406 ; free virtual = 25575
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1971.113 ; gain = 213.023 ; free physical = 5455 ; free virtual = 25624
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1971.121 ; gain = 390.648 ; free physical = 5456 ; free virtual = 25625
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 93 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2003.129 ; gain = 0.000 ; free physical = 5408 ; free virtual = 25577
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+46 Infos, 35 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 2003.129 ; gain = 637.641 ; free physical = 5525 ; free virtual = 25694
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2003.129 ; gain = 0.000 ; free physical = 5525 ; free virtual = 25694
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint '/home/luxoft/raiden/Raiden.runs/synth_1/top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Oct 12 00:16:53 2021...

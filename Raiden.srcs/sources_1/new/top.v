@@ -22,6 +22,8 @@
 module top(
   input clk,
   input rst,
+  input emmc_clk,
+  input emmc_dat0,
   input ftdi_rx,
   input target_rx,
   input trigger_in,
@@ -36,6 +38,7 @@ module top(
   output led2_g,
   output led2_r,
   output led2_b,
+  output led3_b,
   output led_blink,
   output led5_debug,
   output led6_debug,
@@ -63,6 +66,7 @@ wire [31:0] glitch_max;
 wire [31:0] reset_target;
 wire [31:0] uart_trigger_baud;
 wire [7:0] uart_trigger_data;
+wire [31:0] emmc_trigger_data;
 wire armed;
 wire glitched;
 wire finished;
@@ -73,6 +77,16 @@ wire reset_glitcher;
 
 // counter for main loop
 reg [31:0] counter;
+
+wire emmc_trigger;
+
+emmc emmc_inst (
+  .rst(rst || reset_glitcher),
+  .emmc_clk(emmc_clk || clk),
+  .emmc_dat0(emmc_dat0),
+  .emmc_user_data(emmc_user_data),
+  .emmc_trigger(emmc_trigger)
+);
 
 cmd cmd_inst
 (
@@ -86,6 +100,7 @@ cmd cmd_inst
   .glitch_count(glitch_count),
   .glitch_gap(glitch_gap),
   .glitch_max(glitch_max),
+  .emmc_trigger_data(emmc_trigger_data),
   .armed(armed),
   .finished(finished),
   .glitched(glitched),
@@ -126,7 +141,8 @@ assign uart_trigger = rx_valid && (uart_trigger_data == rx_data) ? 1: 0;
 // assign rst_out = reset_target ? 1'b0 : 1'b1;
 wire glitch;
 wire trigger;
-assign trigger = invert_trigger ^ trigger_in ^ uart_trigger;
+
+assign trigger = invert_trigger ^ trigger_in ^ uart_trigger ^ emmc_trigger;
 assign glitch_out = force_state != AUTO ? force_state : glitch;
 assign invert_glitch_out = !glitch_out;
 wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (glitch_max && glitched && !finished)));
@@ -216,6 +232,16 @@ wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (gl
     .duty(48),
     .signal(trigger_in),
     .state(led2_b)
+   );
+   
+      // LD3 - emmc trigger 
+          
+                  
+   pwm pwm_led3_b (
+    .clk(clk),
+    .duty(48),
+    .signal(emmc_trigger),
+    .state(led3_b)
    );
 
   //assign debug_enable = (armed && trigger_in) || (armed && !trigger_in_pullup);
