@@ -37,6 +37,7 @@ module cmd(
   output reg [31:0] glitch_count,
   output reg [31:0] glitch_gap,
   output reg [31:0] glitch_max,
+  output reg [7:0] uart_trigger_data,
   output reg armed,
   output reg reset_glitcher,
   output reg vstart,
@@ -60,24 +61,26 @@ parameter CMD_BUILDTIME = 8'd77;
 parameter CMD_INVERT = 8'd78;
 parameter CMD_RESET_TARGET = 8'd79;
 parameter CMD_GPIO_OUT = 8'd80;
+parameter CMD_UART_TRIGGER = 8'd81;
 
-parameter IDLE = 5'b00000;
-parameter ACK_4BYTE_CMD = 5'b00001;
-parameter GLITCH_WIDTH = 5'b00011;
-parameter GLITCH_DELAY_LENGTH = 5'b00100;
-parameter GLITCH_COUNT = 5'b01000;
-parameter ARM = 5'b01001;
-parameter GLITCH_GAP = 5'b01100;
-parameter FORCE_GLITCH_OUT_STATE = 5'b01110;
-parameter RST_GLITCHER = 5'b10000;
-parameter GPIO_OUT = 5'b10001;
-parameter RST = 5'b10010;
-parameter VSTART = 5'b10100;
-parameter GLITCH_MAX = 5'b10110;
-parameter BUILDTIME = 5'b11000;
-parameter FLAG_STATUS = 5'b11010;
-parameter INVERT = 5'b11100;
-parameter RESET_TARGET = 5'b11110;
+parameter IDLE = 8'b00000000;
+parameter ACK_4BYTE_CMD = 8'b00000001;
+parameter GLITCH_WIDTH = 8'b00000011;
+parameter GLITCH_DELAY_LENGTH = 8'b00000100;
+parameter GLITCH_COUNT = 8'b00001000;
+parameter ARM = 8'b00001001;
+parameter GLITCH_GAP = 8'b00001100;
+parameter FORCE_GLITCH_OUT_STATE = 8'b00001110;
+parameter RST_GLITCHER = 8'b00010000;
+parameter GPIO_OUT = 8'b00010001;
+parameter RST = 8'b00010010;
+parameter VSTART = 8'b00010100;
+parameter GLITCH_MAX = 8'b00010110;
+parameter BUILDTIME = 8'b00011000;
+parameter FLAG_STATUS = 8'b00011010;
+parameter INVERT = 8'b00011100;
+parameter RESET_TARGET = 8'b00011110;
+parameter UART_TRIGGER = 8'b00011111;
   
 reg [4:0] state = IDLE;
 wire bit_out;
@@ -148,6 +151,7 @@ always @(posedge clk)
     glitch_width <= glitch_width;
     glitch_max <= glitch_max;
     glitch_gap <= glitch_gap;
+    uart_trigger_data <= uart_trigger_data;
     state <= state;
     if(state == BUILDTIME || state == ACK_4BYTE_CMD)
       begin
@@ -246,11 +250,17 @@ always @(posedge clk)
                     tx_en <= 1'b1;    
                     state <= INVERT;
                   end
-                  CMD_GPIO_OUT: // set GPIO_OUT state
+                CMD_GPIO_OUT: // set GPIO_OUT state
                     begin
                       tx_data <= rx_data;
                       tx_en <= 1'b1;    
                       state <= GPIO_OUT;
+                     end
+                CMD_UART_TRIGGER: // set UART_TRIGGER data state
+                    begin
+                      tx_data <= rx_data;
+                      tx_en <= 1'b1;    
+                      state <= UART_TRIGGER;
                      end
                 CMD_BUILDTIME:
                   begin
@@ -365,6 +375,16 @@ always @(posedge clk)
          if(rx_valid)
            begin
              armed <= rx_data != 8'b0;
+             tx_data <= rx_data;
+             tx_en <= 1'b1;    
+             state <= IDLE;
+           end
+       end
+      UART_TRIGGER:
+        begin
+         if(rx_valid)
+           begin
+             uart_trigger_data <= rx_data;
              tx_data <= rx_data;
              tx_en <= 1'b1;    
              state <= IDLE;
