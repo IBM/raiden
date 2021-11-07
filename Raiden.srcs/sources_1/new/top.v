@@ -61,6 +61,7 @@ wire [31:0] glitch_count;
 wire [31:0] glitch_gap;
 wire [31:0] glitch_max;
 wire [31:0] reset_target;
+wire [31:0] uart_trigger_baud;
 wire [7:0] uart_trigger_data;
 wire armed;
 wire glitched;
@@ -97,7 +98,8 @@ cmd cmd_inst
   .gpio_in1(gpio_in1),
   .gpio_in2(gpio_in2),
   .gpio_out(gpio_out),
-  .uart_trigger_data(uart_trigger_data)
+  .uart_trigger_data(uart_trigger_data),
+  .uart_trigger_baud(uart_trigger_baud)
   );   
   assign ftdi_tx =  bit_out;
   assign gpio_out = gpio_out;
@@ -110,6 +112,7 @@ wire rx_valid;
 uart_rx rxi_uart_trigger (
   .clk(clk),
   .rst(rst),
+  .baud(uart_trigger_baud),
   .din(target_rx),
   .data_out(rx_data),
   .valid(rx_valid)
@@ -187,7 +190,7 @@ wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (gl
              
    pwm pwm_led1_b (
     .clk(clk),
-    .duty(0),
+    .duty(16),
     .signal(uart_trigger),
     .state(led1_b)
    );
@@ -216,7 +219,7 @@ wire enable =  (force_state == AUTO && (((armed && !finished) && trigger) || (gl
    );
 
   //assign debug_enable = (armed && trigger_in) || (armed && !trigger_in_pullup);
-  assign debug_io0_14_p30 = glitch_out;
+  assign debug_io0_14_p30 = uart_trigger;
   assign led5_debug = reset_out;
   assign led6_debug = reset_target;
   assign led_blink = counter[26];
