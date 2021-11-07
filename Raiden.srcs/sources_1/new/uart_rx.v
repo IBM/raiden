@@ -29,6 +29,7 @@ module  uart_rx (
     input wire          clk,
     input wire          rst,
     input wire          din,
+    input wire [31:0]   baud,
     output reg [7:0]    data_out = 0,
     output reg          valid = 0
 );
@@ -44,8 +45,8 @@ reg [2:0]   bit_index = 3'd0;
 
 
 wire etu_full, etu_half;
-assign etu_full = (etu_cnt == `CLKS_PER_BIT);
-assign etu_half = (etu_cnt == `CLKS_PER_BIT_HALF);
+assign etu_full = (etu_cnt == (`SYSTEM_CLOCK/baud));
+assign etu_half = (etu_cnt == ((`SYSTEM_CLOCK/baud)/2));
 
 always  @ (posedge clk)
 begin
